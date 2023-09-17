@@ -1,23 +1,18 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
 trigger:
-- master
+  branches:
+    include:
+      - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
-- task: Maven@4
-  inputs:
-    mavenPomFile: 'pom.xml'
-    goals: 'install'
-    publishJUnitResults: false
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: true
-    sqMavenPluginVersionChoice: 'latest'
+  - task: UseJavaVersion@1
+    inputs:
+      versionSpec: '8'  # Set the Java version to 8
+
+  - script: mvn clean pakage
+    displayName: 'Build the application'
+
+
+
