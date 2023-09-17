@@ -13,7 +13,7 @@ steps:
       jdkArchitectureOption: x64
       jdkSourceOption: PreInstalled
 
-  - script: mvn clean pakage
+  - script: mvn clean install
     displayName: 'Build the application'
 
 
